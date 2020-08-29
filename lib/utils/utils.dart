@@ -16,15 +16,18 @@ class Utils {
   }
 
   // outra opção para abrir uma tela, por meio de rota nomeada
-  static Future pushNamed({BuildContext context, String route, Object argument}) {
-    // argument pode ter o objeto que será repassado para o destino da rota
+  static Future pushNamed({
+    BuildContext context,
+    String route,
+    Object argument, // objeto repassado para o destino da rota
+  }) {
     return Navigator.of(context).pushNamed(
       route,
       arguments: argument,
     );
   }
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // XXXXX
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// XXXXX
 
 }

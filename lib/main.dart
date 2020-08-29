@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories_meals_screen.dart';
 import 'package:meals/screens/categories_screen.dart';
+import 'package:meals/screens/meal_datail_screen.dart';
+import 'package:meals/screens/tabs_screen.dart';
 import 'package:meals/utils/app_routes.dart';
  
 void main() => runApp(MyApp());
@@ -23,8 +25,17 @@ class MyApp extends StatelessWidget {
         )
       ),
       routes: { // rotas de navegação
-        AppRoutes.HOME: (ctx) => CategoriesScreen(),
+        AppRoutes.HOME: (ctx) => TabsScreen(),
         AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
+        AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(),
+      },
+      onUnknownRoute: (settings) { // não necessário nesta aplicação
+        // é chamada quando uma rota desconhecida é passada
+        return MaterialPageRoute(
+          builder: (_) {
+            return CategoriesScreen(); // poderia ser uma 404 por exemplo
+          }
+        );
       },
     );
   }
