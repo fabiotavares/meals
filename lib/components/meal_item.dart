@@ -14,7 +14,14 @@ class MealItem extends StatelessWidget {
       context: context,
       route: AppRoutes.MEAL_DETAIL,
       argument: meal,
-    );
+    ).then((result) {
+      // valor de retorno da tela quando ela for fechada
+      if (result == null) {
+        print('Sem resultado!');
+      } else {
+        print('O nome da refeição é $result');
+      }
+    });
   }
 
   @override
