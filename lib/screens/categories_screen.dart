@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meals/components/category_item.dart';
 import 'package:meals/data/dummy_data.dart';
 
+// tela com um gridview que mostra as categorias disponíveis
+// exibida dentro da tabview
+
 class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

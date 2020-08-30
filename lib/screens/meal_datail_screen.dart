@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  // quebrando a árvore em widgts menores
-  // títulos
+  // função passada por parâmetro que se responsabilizará por atualizar o status
+  // de favorito da refeição exibida
+  final Function(Meal) onToggleFavorite;
+  final bool Function(Meal) isFavorite;
+
+  // construtor
+  const MealDetailScreen(this.onToggleFavorite, this.isFavorite);
+
   Widget _createSectionTitle(BuildContext context, String title) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -14,7 +20,6 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
-  //seções
   Widget _createSectionContainer(Widget child) {
     return Container(
       padding: EdgeInsets.all(10),
@@ -90,9 +95,13 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.star),
+        child: Icon(isFavorite(meal) ? Icons.star : Icons.star_border),
         onPressed: () {
-          Navigator.of(context).pop(meal.title); // posso passar qq coisa no retorno
+          // alterna o status de favorito da refeição
+          onToggleFavorite(meal);
+
+          // exemplo de aula passada
+          //Navigator.of(context).pop(meal.title); // posso passar qq coisa no retorno
         },
       ),
     );

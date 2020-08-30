@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meals/components/main_drawer.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/favorite_screen.dart';
 
+// tela que exibe duas tabs contendo as telas de categorias e favoritos
+
 class TabsScreen extends StatefulWidget {
+  // lista que será passada via construtor
+  final List<Meal> favoriteMeals;
+
+  const TabsScreen(this.favoriteMeals);
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -11,16 +19,26 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   // estado necessário para controlar manualmente a mudança de tab
   int _selectedScreenIndex = 0;
-  final List<Map<String, Object>> _screens = [
-    {
-      'title': 'Lista de Categorias',
-      'screen': CategoriesScreen(),
-    },
-    {
-      'title': 'Meus Favoritos',
-      'screen': FavoriteScreen(),
-    },
-  ];
+
+  // iniciada no initState pra pegar o widget
+  List<Map<String, Object>> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // inicializando um dos parâmetros
+    _screens = [
+      {
+        'title': 'Lista de Categorias',
+        'screen': CategoriesScreen(),
+      },
+      {
+        'title': 'Meus Favoritos',
+        'screen': FavoriteScreen(widget.favoriteMeals),
+      },
+    ];
+  }
 
   // atualização de estado da tela
   _selectScreen(int index) {
